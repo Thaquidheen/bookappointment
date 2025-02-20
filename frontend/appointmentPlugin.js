@@ -6,45 +6,36 @@
     }
   
     AppointmentPlugin.prototype.renderUI = function() {
-      // Plugin container
+
       const pluginWrapper = document.createElement('div');
       pluginWrapper.className = 'appointment-plugin';
   
-      // Title
+    
       const title = document.createElement('h3');
       title.className = 'appointment-plugin-title';
       title.textContent = 'Book an Appointment';
       pluginWrapper.appendChild(title);
   
-      // --------------------------
-      // 1) NAME FIELD
-      // --------------------------
+
       const nameField = this.createField('Name:', 'text', 'apptName');
       pluginWrapper.appendChild(nameField);
       this.nameInput = nameField.querySelector('#apptName');
   
-      // --------------------------
-      // 2) PHONE FIELD
-      // --------------------------
       const phoneField = this.createField('Phone:', 'text', 'apptPhone');
       pluginWrapper.appendChild(phoneField);
       this.phoneInput = phoneField.querySelector('#apptPhone');
   
-      // --------------------------
-      // 3) DATE FIELD
-      // --------------------------
+  
       const dateField = this.createField('Date:', 'date', 'apptDate');
       pluginWrapper.appendChild(dateField);
       this.dateInput = dateField.querySelector('#apptDate');
   
-      // Whenever the user changes the date, automatically load slots
+
       this.dateInput.addEventListener('change', () => {
         this.loadAvailableSlots(this.dateInput.value, this.slotSelect);
       });
   
-      // --------------------------
-      // 4) TIME SLOT DROPDOWN
-      // --------------------------
+   
       const slotField = document.createElement('div');
       slotField.className = 'appointment-field';
   
@@ -65,10 +56,7 @@
       slotField.appendChild(slotSelect);
       pluginWrapper.appendChild(slotField);
       this.slotSelect = slotSelect;
-  
-      // --------------------------
-      // 5) BOOK APPOINTMENT BUTTON
-      // --------------------------
+
       const bookBtn = document.createElement('button');
       bookBtn.textContent = 'Book Appointment';
       bookBtn.className = 'appointment-button';
@@ -82,13 +70,10 @@
       });
       pluginWrapper.appendChild(bookBtn);
   
-      // Finally, attach the wrapper to the container
+   
       this.container.appendChild(pluginWrapper);
     };
   
-    /**
-     * Utility to create a labeled field with input
-     */
     AppointmentPlugin.prototype.createField = function(labelText, inputType, inputId) {
       const fieldDiv = document.createElement('div');
       fieldDiv.className = 'appointment-field';
@@ -106,13 +91,9 @@
       fieldDiv.appendChild(input);
       return fieldDiv;
     };
-  
-    /**
-     * Fetches available slots for the given date
-     */
     AppointmentPlugin.prototype.loadAvailableSlots = function(dateValue, slotSelect) {
       if (!dateValue) {
-        // If date is cleared, reset the dropdown
+   
         slotSelect.innerHTML = '';
         const defaultOption = document.createElement('option');
         defaultOption.value = '';
@@ -145,10 +126,6 @@
           alert('Failed to load available slots.');
         });
     };
-  
-    /**
-     * Books an appointment
-     */
     AppointmentPlugin.prototype.bookAppointment = function(name, phone, dateVal, slotVal) {
       if (!name || !phone || !dateVal || !slotVal) {
         alert('Please fill out all fields.');
@@ -169,15 +146,14 @@
           const data = await res.json();
           if (!res.ok) throw new Error(data.error || 'Failed to book appointment');
   
-          // Successfully booked
+    
           alert(data.message);
   
-          // Clear fields
+       
           this.nameInput.value = '';
           this.phoneInput.value = '';
           this.dateInput.value = '';
   
-          // Reset the slot dropdown
           this.slotSelect.innerHTML = '';
           const defaultOption = document.createElement('option');
           defaultOption.value = '';
@@ -189,8 +165,7 @@
           alert(err.message);
         });
     };
-  
-    // Expose globally
+
     global.AppointmentPlugin = AppointmentPlugin;
   })(window);
   
