@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Appointment Booking Demo</title>
+  <!-- Include your custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to Our Site</h1>
+    <p>Make an appointment using the form below:</p>
+  </header>
+
+  <!-- Container where the plugin will be rendered -->
+  <div id="appointmentContainer"></div>
+
+  <!-- Include your plugin script -->
+  <script src="appointmentPlugin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('appointmentContainer');
+      new AppointmentPlugin({
+        apiBaseUrl: 'http://127.0.0.1:8000/api', // or your Django endpoint
+        container: container
+      });
+    });
+  </script>
+</body>
+</html>
