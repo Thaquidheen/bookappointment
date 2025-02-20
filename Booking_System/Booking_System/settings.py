@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3&h^zqd8ud^uig9#6e84ryr*l2$3i6n@ew6f6t-lg3*ly4tb9l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['thaqu.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition
@@ -125,8 +125,9 @@ STATIC_URL = 'static/'
 
 CORS_ALLOWED_ORIGINS = [
 
-    'https://bookingappointmentsystem.netlify.app/'
-
+    'https://bookingappointmentsystem.netlify.app'
+    'http://127.0.0.1:5500',
+    'http://localhost:5500'
 ]
 
 
